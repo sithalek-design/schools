@@ -1,8 +1,8 @@
 
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 def home(request):
     return HttpResponse("my Home")
 def student(request):
-    return HttpResponse("Hello world!")
+    return render(request,'index.html')
