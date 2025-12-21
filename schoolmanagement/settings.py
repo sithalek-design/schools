@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-cb_710b9#fst1(pkdh)-47q+((@a2%lsi%mby8($+)tmx)p-4^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['schools-production-bt.up.railway.app','localhost','127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://schools-production-bt.up.railway.app']
@@ -121,5 +121,5 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS=[BASE_DIR / 'static/']
-STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+# STATIC_ROOT=os.path.join(BASE_DIR,'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
