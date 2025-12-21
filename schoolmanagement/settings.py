@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-cb_710b9#fst1(pkdh)-47q+((@a2%lsi%mby8($+)tmx)p-4^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['schools-production-bt.up.railway.app','localhost','127.0.0.1']
 CSRF_TRUSTED_ORIGINS = ['https://schools-production-bt.up.railway.app']
@@ -74,6 +74,8 @@ WSGI_APPLICATION = 'schoolmanagement.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -119,3 +121,5 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS=[BASE_DIR / 'static/']
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
