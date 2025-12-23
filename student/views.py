@@ -7,3 +7,5 @@ def home(request):
     return render(request,'home.html')
 def student(request):
     return render(request,'index.html')
+def test(request):
+    return render(request,'main.html')
