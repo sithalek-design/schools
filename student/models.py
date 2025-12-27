@@ -9,5 +9,5 @@ class Student(models.Model):
 
 
     def __str__(self):
-        return self.fname
+        return f"{self.fname} {self.lname}"
 

@@ -13055,10 +13055,10 @@ textarea.form-control-lg {
   margin-bottom: 0.2rem;
 }
 .sidebar-menu .nav-item > .nav-link .nav-arrow {
-  transition: transform ease-in-out 0.3s;
+  transition: transform ease-in-out 0.1s;
   transform: translateY(-50%) /*rtl:append:rotate(180deg)*/;
   animation-name: fadeIn;
-  animation-duration: 0.3s;
+  animation-duration: 0.1s;
   animation-fill-mode: both;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -15593,12 +15593,5 @@ fieldset legend {
 }
 
 /* My Define */
-.txt-indent{
-    text-indent: 50px;
-    
-  }
-.small-text{
-  font-size: 1rem;
-  color: red;
-}
+
 /*# sourceMappingURL=adminlte.css.map */
