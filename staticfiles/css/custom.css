@@ -2,6 +2,9 @@
     --bs-body-font-size: 4rem;
     /* default is 1rem (16px) */
 }
+.table-custom-color {
+  --bs-table-bg: #413013; /* Example: a specific hex color */
+}
 
 .text-indent{
     text-indent: 2em;
@@ -17,4 +20,16 @@
 .my-arrow{
     transform: translateY(-50%) rotate(20deg);
     color:red;
+}
+
+
+
+.gear-spin:hover {
+ animation-name:spin;
+  animation-duration: 3s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

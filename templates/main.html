@@ -1,4 +1,5 @@
 <!-- {% load static %}--> 
+ 
   <!DOCTYPE html>
 <html lang="en">
   <!--begin::Head-->
@@ -362,32 +363,13 @@
                    <i class="text-size nav-arrow bi bi-chevron-right"></i>
                   </p>
                 </a>
-                <!-- <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="./index.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard v1</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./index2.html" class="nav-link active">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard v2</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="./index3.html" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Dashboard v3</p>
-                    </a>
-                  </li>
-                </ul> -->
+               
               </li>
-              <li class="nav-item nav-flat {% if request.path == "/student/" %}
-  menu-open
-{% else %}
-  
-{% endif %}">
+              <li class="nav-item nav-flat {% if request.path == "/student/" or request.path == "/main-program/" or request.path == "/sub-program/" %}
+                    menu-open
+                  {% else %}
+                    
+                  {% endif %}">
                 <a href="#" class="nav-link">
                   <i class="nav-icon bi bi-buildings "></i>
                   <p small-text>
@@ -396,26 +378,21 @@
                   </p>
                 </a>
                 <ul class=" nav nav-treeview">
-                  <!-- <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="nav-icon bi bi-circle"></i>
-                      <p>Level 2</p>
-                    </a>
-                  </li> -->
-                  <li class="nav-item {% if request.path == "/student/" %}
-  menu-open
-{% else %}
-  
-{% endif %}">
+                 
+                  <li class="nav-item {% if request.path == "/student/" or request.path == "/main-program/" or request.path == "/sub-program/" %}
+                        menu-open
+                      {% else %}
+                        
+                      {% endif %}">
                     <a href="#" class="nav-link text-sm ">
-                      <i class="nav-icon bi bi-circle"></i>
+                      <i class="nav-icon bi bi-mortarboard "></i>
                       <p>
                         Academic
                         <i class="nav-arrow bi bi-chevron-right"></i>
                       </p>
                     </a>
                     <ul class="nav nav-treeview">
-                      <li class="nav-item {% if request.path == "/student/" %}
+                      <li class="nav-item {% if request.path == "/student/" or request.path == "/main-program/" or request.path == "/sub-program/"%}
                                       menu-open
                                     {% else %}
                                       
@@ -428,22 +405,38 @@
                         </a>
 
                         <ul class="nav nav-treeview">
-                        <li class="nav-item">
+                        <li class="nav-item {% if request.path == "/student/" or request.path == "/main-program/" or request.path == "/sub-program/" %}
+                                      menu-open
+                                    {% else %}
+                                      
+                                    {% endif %}">
                           <a href="#" class="nav-link">
-                            <i class="nav-icon bi bi-gear"></i>
+                            <i class="nav-icon bi bi-p-circle"></i>
                           <p>
                           Program<i class="nav-arrow bi bi-chevron-right"></i>
                           </p>
                         </a>
                         <ul class="nav nav-treeview">
                           <li  class="nav-item">
-                            <a href="{%url 'student'%}" class="nav-link {% if request.path == "/main-program/" %}
+                            <a href="{%url 'main-program'%}" class="nav-link {% if request.path == "/main-program/" %}
                                       active
                                     {% else %}
                                       
                                     {% endif %}">
-                              <i class="nav-icon bi bi-mortarboard "></i>
+                              <i class="nav-icon bi bi-circle "></i>
                               <p style="">Main Program</p>
+                            </a>
+                          </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                          <li  class="nav-item">
+                            <a href="{%url 'sub-program'%}" class="nav-link {% if request.path == "/sub-program/" %}
+                                      active
+                                    {% else %}
+                                      
+                                    {% endif %}">
+                              <i class="nav-icon bi bi-circle "></i>
+                              <p style="">Sub Program</p>
                             </a>
                           </li>
                         </ul>
@@ -451,7 +444,7 @@
                         </ul>
                         <ul class="nav nav-treeview">
                           <li  class="nav-item">
-                            <a href="{%url 'student'%}" class="nav-link {% if request.path == "/student/" %}
+                            <a  href="{%url 'student'%} "    class="nav-link {% if request.path == "/student/" %}
                                       active
                                     {% else %}
                                       
@@ -519,7 +512,7 @@
               </li>
               <li class="nav-item nav-flat ">
                 <a href="#" class="nav-link  ">
-                  <i class="nav-icon bi bi-circle-fill "></i>
+                  <i class="nav-icon bi bi-shield-lock "></i>
                   <p small-text>
                     SECURITY
                     <i class="nav-arrow bi bi-chevron-right "></i>

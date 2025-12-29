@@ -11,7 +11,7 @@ Student
 {%endblock%}
 
 {%block content%}
-<p id="data">
+<i class="bi bi-gear gear-spin"></i>
 
 
 
@@ -44,9 +44,9 @@ $(document).ready(function(){
        $("#student_tbl").html(stdata(response));
     console.log(response);
                   },
-    error:function(){
-    alert("error");
-}
+        error:function(){
+        alert("error");
+                }
   });
 function stdata(data){
   var str="";
