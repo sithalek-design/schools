@@ -1,139 +1,141 @@
-
-
-{%extends './main.html'%}
+{%extends './main.html'%} 
 
 {%block title%}Main Program {%endblock%} 
-
- {%block contentheader%}
-Main Program
-{%endblock%}
-
- {%block breadcrumb%}
-Main Program
-{%endblock%}
-
-{%block content%}
-<div>
-    
-    
-   
-    
-</div>
+{%block  contentheader%} Main Program {%endblock%} {%block breadcrumb%} Main Program
+{%endblock%} {%block content%}
+<div></div>
 <div class="row">
-   <div class="row">
-    <div class="col-sm-4 "> 
-         <table class="table table-borderless shadow">
-    
-    <tbody>
-      
-      <form action="">
-<tr>
-        <td>
-            <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
-            {{mainprogramform.mp_name_kh}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <label for="lblmp_name_en" class="form-label">Name in En</label>
-            {{mainprogramform.mp_name_en}}
-        </td>
-      </tr>
-      <tr>
-        <td>
-            <label for="abbreviation" class="form-label">Abbreviation</label>
-            {{mainprogramform.abbreviation}}
-        </td>
-      </tr>
-      <tr>
-        <td class="text-end">
-            <input type="submit" value=" Save " class="btn btn-primary">
-        </td>
-      </tr>
-      </form>
-
-    </tbody>
-</table>
-
+  <div class="row">
+    <div class="col-sm-4">
+      <table class="table table-borderless shadow">
+        <tbody>
+          <form action="javascript:void(0)" id="mainprogramform" method="POST">
+            {% csrf_token %}
+            <tr>
+              <td>
+                <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
+                {{mainprogramform.mp_name_kh}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="lblmp_name_en" class="form-label required"
+                  >Name in En</label
+                >
+                {{mainprogramform.mp_name_en}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="abbreviation" class="form-label"
+                  >Abbreviation</label
+                >
+                {{mainprogramform.abbreviation}}
+              </td>
+            </tr>
+            <tr>
+              <td class="text-end">
+                <input type="submit" value=" Save " class="btn btn-primary" />
+              </td>
+            </tr>
+          </form>
+        </tbody>
+      </table>
     </div>
 
+    <div class="col-sm-8">
+      <table class="table table-hover shadow">
+        <thead>
+          <tr>
+            <td>Name Kh</td>
+            <th>Name En</th>
+            <th>Abbreviation</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="tbl_main_program">
+          <tr>
+            <td>Mary</td>
+            <td>Moe</td>
+            <td>mary@example.com</td>
+            <td>mary@example.com</td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <footer class="app-footer">
+                <!--begin::To the end-->
+                <div class="float-end d-none d-sm-inline">
+                  Anything you want
+                </div>
+                <!--end::To the end-->
+                <!--begin::Copyright-->
 
-    <div class="col-sm-8  ">
-
-<table class="table table-hover shadow">
-    <thead>
-      <tr>
-        <td>Name Kh</td>
-        <th>Name En</th>
-        <th>Abbreviation</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-    <tbody id="tbl_main_program">
-       <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td colspan="4">         <footer class="app-footer">
-        <!--begin::To the end-->
-        <div class="float-end d-none d-sm-inline">Anything you want</div>
-        <!--end::To the end-->
-        <!--begin::Copyright-->
-
-        <strong>
-          Copyright &copy; 2014-2025&nbsp;
-          <a href="https://adminlte.io" class="text-decoration-none"
-            >Base Techs </a
-          >.
-        </strong>
-        All rights reserved.
-        <!--end::Copyright-->
-      </footer></td>
-
-      </tr>
-    </tbody>
-</table>
-
-
+                <strong>
+                  Copyright &copy; 2014-2025&nbsp;
+                  <a href="https://adminlte.io" class="text-decoration-none"
+                    >Base Techs </a
+                  >.
+                </strong>
+                All rights reserved.
+                <!--end::Copyright-->
+              </footer>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
-  
 </div>
 
 <script>
-    $(document).ready(function(){
- 
+        $(document).ready(function(){
 
-        $("#btnSave-mp").click(function(){
 
-        
-                  objdata={
-        mpprogramkh:$("#mp_name_kh").val(),
-        mpprogramen:$("#mp_name_en").val(),
-        abbreviation:$("#abbreviation").val(),
-    },
-        $.ajax({
+
+
+
+
+
+
+
+
+     function mainprogramsubmit(event){
+      event.preventDefault();
+      console.log($(this).serializeArray());
+    }
+
+
+    function aa(){
+
+      alert("dfd");
+    }
+  function mpprogram_save(){
+   
+         $.ajax({
             
-            type:"POST",
-            url:"{% url 'main-program-data'%}",
-            data=objdata,
-            dataType: 'json',
-            success:function(response){
-      
-            alert("Good");
-            console.log(response);
-                        },
-                error:function(){
-                alert("error");
-                }
-  });
-        });
+      type:"POST",
+      url:"{% url 'main-program-data'%}",
+      data:{
 
+            mpprogramkh:$("#txtmpprogramkh"),
+            mpprogramen:$("#txtmpprogramen"),
+            abbreviation:$("#txtabbreviation"),
+            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+           },
+      success:function(response){
 
-       
+         alert(response);
+                    },
+        
     });
+
+  }
+
+  
+    $("#mainprogramform").submit(
+      mpprogram_save
+    )
+
+        });
 </script>
 {%endblock%}

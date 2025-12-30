@@ -1,10 +1,4 @@
-:root {
-    --bs-body-font-size: 4rem;
-    /* default is 1rem (16px) */
-}
-.table-custom-color {
-  --bs-table-bg: #413013; /* Example: a specific hex color */
-}
+
 
 .text-indent{
     text-indent: 2em;
@@ -33,3 +27,11 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+
+
+ label.required::after {
+    content: " *"; /* Add a space before the asterisk */
+    color: red;
+    font-size: 20px;
+  }
