@@ -1,5 +1,7 @@
 
-
+:root {
+  --bs-body-font-family: 'Khmer OS Battambang', serif;
+}
 .text-indent{
     text-indent: 2em;
     
@@ -32,6 +34,6 @@
 
  label.required::after {
     content: " *"; /* Add a space before the asterisk */
-    color: red;
+    color: rgb(255, 0, 0);
     font-size: 20px;
   }
