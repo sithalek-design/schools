@@ -89,8 +89,34 @@
 
 <script>
         $(document).ready(function(){
+function mainProgramData(){
 
-
+}
+ $.ajax({
+    type:"GET",
+    url:"{% url 'mainprogram_data'%}",
+    async: true,
+    contentType: 'application/json;charset=utf-8',
+    success:function(response){
+      
+       $("#student_tbl").html(stdata(response));
+    console.log(response);
+                  },
+        error:function(){
+        alert("error");
+                }
+  });
+function stdata(data){
+  var str="";
+  for(var i=0;i<data.student.length;i++){
+    str += "<tr>" +
+                        "<td>" + data.student[i].id + "</td>" +
+                        "<td>" + data.student[i].fname + "</td>" +
+                        "<td>" + data.student[i].lname + "</td>" +
+                        "</tr>";
+  }
+  return str;
+}
 
 
 
@@ -101,7 +127,28 @@
 
      function mainprogramsubmit(event){
       event.preventDefault();
-      console.log($(this).serializeArray());
+      valInArray=$(this).serializeArray();
+      const body={}
+
+     /* valInArray.forEach(e=>{
+        body[e.name]=e.value
+      })*/
+      valInArray.reduce((body,e)=>{
+        body[e.name]=e.value
+        return body
+      },body)
+      
+       $.ajax({
+            
+      type:"POST",
+      url:"{% url 'main-program-save'%}",
+      data:body,
+      success:function(response){
+
+         console.log(response);
+                    },
+        
+    });
     }
 
 
@@ -109,31 +156,11 @@
 
       alert("dfd");
     }
-  function mpprogram_save(){
-   
-         $.ajax({
-            
-      type:"POST",
-      url:"{% url 'main-program-data'%}",
-      data:{
-
-            mpprogramkh:$("#txtmpprogramkh"),
-            mpprogramen:$("#txtmpprogramen"),
-            abbreviation:$("#txtabbreviation"),
-            csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-           },
-      success:function(response){
-
-         alert(response);
-                    },
-        
-    });
-
-  }
+ 
 
   
     $("#mainprogramform").submit(
-      mpprogram_save
+      mainprogramsubmit
     )
 
         });
