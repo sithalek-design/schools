@@ -1,0 +1,72 @@
+<script>
+  $(document).ready(function () {
+    mainprogramdata();
+    function mainprogramdata() {
+      $.ajax({
+        type: "GET",
+        url: "{% url 'main-program-data'%}",
+        async: true,
+        contentType: "application/json;charset=utf-8",
+        success: function (response) {
+          $("#tbl_main_program").html(mpdata(response));
+          console.log(response);
+        },
+        error: function () {
+          alert("error");
+        },
+      });
+    }
+    function mpdata(data) {
+      var str = "";
+      for (var i = 0; i < data.mainprogram.length; i++) {
+        str +=
+          "<tr>" +
+          
+          "<td>" +
+          data.mainprogram[i].mp_name_kh +
+          "</td>" +
+          "<td>" +
+          data.mainprogram[i].mp_name_en +
+          "</td>" +
+          "<td>" +
+          data.mainprogram[i].abbreviation +
+          "</td>" +
+          "<td>" +
+          "<a href='#'><i class='bi bi-pencil '></i></a> <a href='#'><i class='bi bi-trash '></i></a>" +
+          "</td>" +
+          "</tr>";
+      }
+      return str;
+    }
+
+    function mainprogramsubmit(event) {
+      event.preventDefault();
+      valInArray = $(this).serializeArray();
+      const body = {};
+
+      /* valInArray.forEach(e=>{
+        body[e.name]=e.value
+      })*/
+      valInArray.reduce((body, e) => {
+        body[e.name] = e.value;
+        return body;
+      }, body);
+
+      $.ajax({
+        type: "POST",
+        url: "{% url 'main-program-save'%}",
+        data: body,
+        success: function (response) {
+          mainprogramdata();
+          // console.log(response);
+        },
+      });
+    }
+
+    function aa() {
+      alert("dfd");
+    }
+
+    $("#mainprogramform").submit(mainprogramsubmit);
+  });
+</script>

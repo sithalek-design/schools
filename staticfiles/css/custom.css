@@ -33,7 +33,7 @@
 
 
  label.required::after {
-    content: " *"; /* Add a space before the asterisk */
+    content: "*"; /* Add a space before the asterisk */
     color: rgb(255, 0, 0);
     font-size: 20px;
   }
