@@ -1,5 +1,31 @@
 <script>
+   function myfun(a){
+      console.log(a);
+    };
+
+    function mainProgramUpdateShow(id) {
+     url=window.origin+"/main-program-update-show/"+id+"/";
+      
+     // url="{%url 'mainProgramUpdateShow' "1" %}";
+      console.log(url);
+      $.ajax({
+        type: "GET",
+        url: url,
+        async: true,
+        contentType: "application/json;charset=utf-8",
+        success: function (response) {
+          //$("#tbl_main_program").html(mpdata(response));
+          console.log(response);
+        },
+        error: function () {
+          alert(window.location.origin);
+        },
+      });
+    }
   $(document).ready(function () {
+    
+    
+   
     mainprogramdata();
     function mainprogramdata() {
       $.ajax({
@@ -16,6 +42,12 @@
         },
       });
     }
+
+    $("#sara").click(function(){
+      console.log("Hiii");
+    });
+    
+    
     function mpdata(data) {
       var str = "";
       for (var i = 0; i < data.mainprogram.length; i++) {
@@ -31,8 +63,8 @@
           "<td>" +
           data.mainprogram[i].abbreviation +
           "</td>" +
-          "<td>" +
-          "<a href='#'><i class='bi bi-pencil '></i></a> <a href='#'><i class='bi bi-trash '></i></a>" +
+          "<td >" +
+          "<a href='javascript:void(0)' ><i class='edit-icon bi bi-pencil-square ' data-bs-toggle='modal' data-bs-target='#mainprogramModal' onclick=mainProgramUpdateShow("+data.mainprogram[i].id+")></i></a>&ensp;&ensp; <a href='#' ><i class='delete-icon bi bi-trash '></i></a>" +
           "</td>" +
           "</tr>";
       }
@@ -51,7 +83,7 @@
         body[e.name] = e.value;
         return body;
       }, body);
-
+      
       $.ajax({
         type: "POST",
         url: "{% url 'main-program-save'%}",
@@ -64,7 +96,7 @@
     }
 
     function aa() {
-      alert("dfd");
+      console.log("tom");
     }
 
     $("#mainprogramform").submit(mainprogramsubmit);

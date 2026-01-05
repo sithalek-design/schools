@@ -25,14 +25,4 @@ class SubProgram(models.Model):
     def __str__(self):
         return f"{self.su_name_kh} {self.su_name_en}"
     
-class MainProgramForm(ModelForm):
-    class Meta:
-        model=MainProgram
-        fields="__all__"
-        # fields=['mp_name_kh','mp_name_en','abbreviation']
-    
-    def __init__(self,*args,**kwargs):
-        super().__init__(*args,**kwargs)
-        self.fields['mp_name_kh'].widget.attrs.update({'class':'form-control','placeholder': 'Enter in Khmer','id':'txtmpnamekh'})
-        self.fields['mp_name_en'].widget.attrs.update({'class':'form-control','placeholder': 'Enter in English','id':'txtmpnameen'})
-        self.fields['abbreviation'].widget.attrs.update({'class':'form-control','placeholder': 'Enter abbreviation','id':'txtabbreviation'})
+

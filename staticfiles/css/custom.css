@@ -37,3 +37,19 @@
     color: rgb(255, 0, 0);
     font-size: 20px;
   }
+
+  .delete-icon:hover{
+    color:red;
+    font-size: 17px;
+  }
+  .edit-icon:hover{
+    color:rgb(0, 156, 26);
+    font-size: 17px;
+  }
+  .edit-icon{
+    color:rgb(0, 156, 26);
+  }
+  .delete-icon{
+    color:red;
+  }
+
