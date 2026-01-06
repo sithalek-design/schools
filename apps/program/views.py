@@ -29,8 +29,14 @@ def main_program_update_show(request,pk):
     mainprogram=MainProgram.objects.get(id=pa)
     # return JsonResponse({"mainprogram":MainProgram.objects.all().values()})
     # print(url)
-    return JsonResponse({"namekh":mainprogram.mp_name_kh,"nameen":mainprogram.mp_name_en})
+    form=MainProgramForm(instance=mainprogram)
+
+    context={
+        'mpForm':form,
+    }
+    # return JsonResponse({"namekh":mainprogram.mp_name_kh,"nameen":mainprogram.mp_name_en})
     # return JsonResponse({"name":"sitha"})
+    return render(request,'mainprogram.html',context)
     
 
 def subprogram(request):
