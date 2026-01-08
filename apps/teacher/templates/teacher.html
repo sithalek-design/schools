@@ -11,10 +11,14 @@ Teacher
 {%endblock%}
 
 {%block content%}
+<input type="text" 
+placeholder="Search" 
+name="search"
+hx-get="{%url 'search'%}"
+hx-trigger="keyup"
+hx-target="#tblstu"
+/>
 
-  <h1>My First Bootstrap Page</h1>
-  <p>This part is inside a .container class.</p>
-  <p>The .container class provides a responsive fixed width container.</p>
-  <p>Resize the browser window to see that the container width will change at different breakpoints.</p>
+{%include 'partials/list-detail.html'%}
 
 {%endblock%}

@@ -25,3 +25,5 @@ def student_data(request):
     return HttpResponse(student)
 def test(request):
     return render(request,'main.html')
+
+
