@@ -9,6 +9,8 @@ def teacher(request):
     return render(request,'teacher.html',context)
 
 def search(request):
+    import time
+    time.sleep(2)
     query=request.GET.get('search','')
     teach=Teacher.objects.filter(
         Q(lname__icontains=query)|Q(fname__icontains=query)
