@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse,JsonResponse
 from .models import *
 from django.forms.models import model_to_dict
@@ -34,10 +34,10 @@ def main_program_update_show(request,pk):
     context={
         'mpForm':form,
     }
-    return JsonResponse({"namekh":mainprogram.mp_name_kh,"nameen":mainprogram.mp_name_en})
+    # return JsonResponse({"namekh":mainprogram.mp_name_kh,"nameen":mainprogram.mp_name_en})
     
     # return JsonResponse({"name":"sitha"})
-    # return render(request,'mainprogram.html',context)
+    return render(request,'mainprogram.html',context)
     
 
 def subprogram(request):

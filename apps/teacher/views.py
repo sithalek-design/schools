@@ -4,7 +4,7 @@ from .models import Teacher
 from django.db.models import Q
 
 def teacher(request):
-    tea=Teacher.objects.all()
+    tea=Teacher.objects.all().order_by()
     context={'teachers':tea}
     return render(request,'teacher.html',context)
 

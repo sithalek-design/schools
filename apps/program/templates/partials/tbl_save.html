@@ -1,0 +1,37 @@
+ <div class="col-sm-4">
+      <table class="table table-borderless shadow">
+        <tbody>
+          <form action="javascript:void(0)" id="mainprogramform" method="POST">
+            {% csrf_token %}
+            <tr>
+              <td>
+                <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
+                {{mainprogramform.mp_name_kh}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="lblmp_name_en" class="form-label required"
+                  >Name in En</label
+                >
+                {{mainprogramform.mp_name_en}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="abbreviation" class="form-label"
+                  >Abbreviation</label
+                >
+                {{mainprogramform.abbreviation}}
+                
+              </td>
+            </tr>
+            <tr>
+              <td class="text-end">
+                <input type="submit" value=" Save " class="btn btn-primary" />
+              </td>
+            </tr>
+          </form>
+        </tbody>
+      </table>
+    </div>

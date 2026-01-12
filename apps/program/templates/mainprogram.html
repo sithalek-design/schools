@@ -2,149 +2,22 @@
 {%extends './main.html'%} 
 
 {%block title%}Main Program {%endblock%} 
-{%block  contentheader%} Main Program {%endblock%} {%block breadcrumb%} Main Program
-{%endblock%} {%block content%}
+
+{%block  contentheader%} Main Program {%endblock%}
+
+ {%block breadcrumb%} Main Program{%endblock%} 
+
+ {%block content%}
 <div></div>
 <div class="row">
   <div class="row">
-    <div class="col-sm-4">
-      <table class="table table-borderless shadow">
-        <tbody>
-          <form action="javascript:void(0)" id="mainprogramform" method="POST">
-            {% csrf_token %}
-            <tr>
-              <td>
-                <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
-                {{mainprogramform.mp_name_kh}}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="lblmp_name_en" class="form-label required"
-                  >Name in En</label
-                >
-                {{mainprogramform.mp_name_en}}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="abbreviation" class="form-label"
-                  >Abbreviation</label
-                >
-                {{mainprogramform.abbreviation}}
-                
-              </td>
-            </tr>
-            <tr>
-              <td class="text-end">
-                <input type="submit" value=" Save " class="btn btn-primary" />
-              </td>
-            </tr>
-          </form>
-        </tbody>
-      </table>
-    </div>
-    
-    <div class="col-sm-8">
-      <table class="table table-hover shadow" >
-        <thead>
-          <tr >
-            <th class="col-4">Name Kh</th>
-            <th class="col-4"> Name En</th>
-            <th class="col-2">Abbreviation</th>
-            <th class="col-2">Action</th>
-          </tr>
-        </thead>
-        <tbody id="tbl_main_program">
-          <tr>
-            <td>Mary</td>
-            <td>Moe</td>
-            <td>mary@example.com</td>
-            <td>mary@example.com</td>
-          </tr>
-          <tr>
-            <td colspan="4">
-              <footer class="app-footer">
-                <!--begin::To the end-->
-                <div class="float-end d-none d-sm-inline">
-                  Anything you want
-                </div>
-                <!--end::To the end-->
-                <!--begin::Copyright-->
-
-                <strong>
-                  Copyright &copy; 2014-2025&nbsp;
-                  <a href="https://adminlte.io" class="text-decoration-none"
-                    >Base Techs </a
-                  >.
-                </strong>
-                All rights reserved.
-                <!--end::Copyright-->
-              </footer>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+   {%include 'partials/tbl_save.html'%}
+   {%include 'partials/tbl_detail.html'%}
   </div>
 </div>
 
+{%include 'partials/tbl_modal.html'%}
 
-<div class="modal fade" id="mainprogramModal" >
-  <div class="modal-dialog">
-    <div class="modal-content" >
+{%include 'partials/mainprogramScript.html'%}
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Update Form</h4>
-        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-      </div>
-
-      <!-- Modal body -->
-      <div class="modal-body" >
-        <table class="table table-borderless ">
-        <tbody>
-          <form action="javascript:void(0)" id="mainprogrammodalshow" method="POST">
-            {% csrf_token %}
-            <tr>
-              <td>
-                <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
-                {{mainprogramform.mp_name_kh}}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="lblmp_name_en" class="form-label required"
-                  >Name in En</label
-                >
-                {{mainprogramform.mp_name_en}}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="abbreviation" class="form-label"
-                  >Abbreviation</label
-                >
-                {{mainprogramform.abbreviation}}
-                
-              </td>
-            </tr>
-            <tr>
-              <td class="text-end">
-                <input type="submit" value=" Save " class="btn btn-primary" />
-              </td>
-            </tr>
-          </form>
-        </tbody>
-      </table>
-      </div>
-
-      <!-- Modal footer -->
-      
-
-    </div>
-  </div>
-</div>
-
-{%include 'mainprogramScript.html'%}
 {%endblock%}

@@ -1,0 +1,55 @@
+<div class="modal fade" id="mainprogramModal" >
+  <div class="modal-dialog">
+    <div class="modal-content" >
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Update Form</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body" >
+        <table class="table table-borderless ">
+        <tbody>
+          <form action="javascript:void(0)" id="mainprogrammodalshow" method="POST">
+            {% csrf_token %}
+            <tr>
+              <td>
+                <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
+                {{mainprogramform.mp_name_kh}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="lblmp_name_en" class="form-label required"
+                  >Name in En</label
+                >
+                {{mainprogramform.mp_name_en}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label for="abbreviation" class="form-label"
+                  >Abbreviation</label
+                >
+                {{mainprogramform.abbreviation}}
+                
+              </td>
+            </tr>
+            <tr>
+              <td class="text-end">
+                <input type="submit" value=" Save " class="btn btn-primary" />
+              </td>
+            </tr>
+          </form>
+        </tbody>
+      </table>
+      </div>
+
+      <!-- Modal footer -->
+      
+
+    </div>
+  </div>
+</div>
