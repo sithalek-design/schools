@@ -1,4 +1,5 @@
- <div id="tblstu">
+ <div id="tblteacher">
+  
  <table class="table table-bordered" >
     <thead>
       <tr>
@@ -6,15 +7,21 @@
         <th>First Name</th>
         <th>Last Name</th>
         <th>Created Date</th>
+        <th>Action</th>
       </tr>
     </thead>
-    <tbody id="student_tbl">
+    <tbody id="teacher_tbl">
       {%for teacher in teachers%}
      <tr>
       <td>{{teacher.id}}</td>
       <td>{{teacher.fname}}</td>
       <td>{{teacher.lname}}</td>
       <td>{{teacher.created_at|date:"d M, Y"}}</td>
+      <td><a href="javarscript:void(0);" ><i class="edit-icon bi bi-pencil-square"
+        hx-get="{%url 'update' teacher.id%}"
+        hx-trigger="click"
+        hx-target="#tblteacher"
+        ></i></a> </td>
       
      </tr>
      {%endfor%}
@@ -23,5 +30,5 @@
     
     </tbody>
   </table>
-
+{{tFrom.fname}}
 </div>
