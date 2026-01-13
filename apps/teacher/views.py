@@ -5,9 +5,18 @@ from django.db.models import Q
 from .form import *
 
 def teacher(request):
+    tform=TeacherForm()
     tea=Teacher.objects.all().order_by()
-    context={'teachers':tea}
+    context={'teachers':tea,
+             'tForm':tform,
+             }
     return render(request,'teacher.html',context)
+
+def create(request):
+    # if request.method=='POST':
+    #     print(request)
+        # return render(request,'m.html')
+    print("Hello")
 
 def search(request):
     import time
@@ -22,12 +31,12 @@ def update_form(request,pk):
     tea=Teacher.objects.get(id=pk)
     form=TeacherForm(instance=tea)
 
-    # context={
-    #     'tForm':form,
-    # }
-    context={'teachers':tea}
+    context={
+        'tForm':form,
+    }
+    # context={'teachers':tea}
    
-    return render(request,'update_form.html',context)
+    return render(request,'partials/update-form_teacher.html',context)
     
 
 

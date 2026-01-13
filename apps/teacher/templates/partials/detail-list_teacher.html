@@ -1,3 +1,5 @@
+ 
+   <div class="col-sm-8">
  <div id="tblteacher">
   
  <table class="table table-bordered" >
@@ -20,15 +22,17 @@
       <td><a href="" ><i class="edit-icon bi bi-pencil-square"
         hx-get="{%url 'update' teacher.id%}"
         hx-trigger="click"
-        hx-target="#sala"
+        hx-target="#teachme"
+        
         ></i></a> </td>
       
      </tr>
      {%endfor%}
-     
+    
     
     
     </tbody>
   </table>
 {{tFrom.fname}}
+</div>
 </div>

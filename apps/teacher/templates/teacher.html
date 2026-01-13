@@ -19,8 +19,15 @@ hx-trigger="keyup"
 hx-target="#tblteacher"
 hx-indicator="#spinner"
 />
-
 {%include 'partials/spinner.html'%}
-{%include 'partials/list-detail.html'%}
-<div id="sala">lala</div>
+<div class="row">
+  <div class="row">
+    {%include 'partials/save-form_teacher.html'%}
+   {%include 'partials/detail-list_teacher.html'%}
+   
+  </div>
+</div>
+
+
+<div id="sala"></div>
 {%endblock%}
