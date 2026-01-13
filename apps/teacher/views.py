@@ -22,11 +22,11 @@ def update_form(request,pk):
     tea=Teacher.objects.get(id=pk)
     form=TeacherForm(instance=tea)
 
-    context={
-        'tForm':form,
-    }
-    # context={'teachers':tea}
-    
+    # context={
+    #     'tForm':form,
+    # }
+    context={'teachers':tea}
+   
     return render(request,'update_form.html',context)
     
 
