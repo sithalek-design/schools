@@ -1,29 +1,38 @@
- <div class="col-sm-4" id="teachme">
-      <table class="table table-borderless shadow">
-        <tbody >
-          <form hx-post="{%url 'create-teacher'%}" id="teacher_create">
-            {% csrf_token %}
-            <tr>
-              <td>
-                <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
-                {{tForm.fname}}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="lblmp_name_en" class="form-label required"
-                  >Name in En</label
-                >
-                {{tForm.lname}}
-              </td>
-            </tr>
-            
-            <tr>
-              <td class="text-end">
-                <input type="submit" value=" Save " class="btn btn-outline-primary" />
-              </td>
-            </tr>
-          </form>
-        </tbody>
-      </table>
-    </div>
+<div class="col-sm-4" id="teachme">
+  <table class="table table-borderless shadow">
+    <tbody>
+      <form id="teacher_create"
+        hx-post="{%url 'create-teacher'%}"
+        method="POST"
+        hx-target="#teachme"
+      
+      >
+        {% csrf_token %}
+        <tr>
+          <td>
+            <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
+            {{tForm.fname}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="lblmp_name_en" class="form-label required"
+              >Name in En</label
+            >
+            {{tForm.lname}}
+          </td>
+        </tr>
+
+        <tr>
+          <td class="text-end">
+            <input
+              type="submit"
+              value=" Save "
+              class="btn btn-outline-primary"
+            />
+          </td>
+        </tr>
+      </form>
+    </tbody>
+  </table>
+</div>

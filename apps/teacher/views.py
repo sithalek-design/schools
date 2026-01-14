@@ -13,10 +13,18 @@ def teacher(request):
     return render(request,'teacher.html',context)
 
 def create(request):
-    # if request.method=='POST':
-    #     print(request)
+    if request.method=='POST':
+          form = TeacherForm(request.POST)
+          if form.is_valid():
+           
+           form.save()
+           context={
+               'teachers':teacher,
+           }
+        #    print(teachers)
         # return render(request,'m.html')
-    print("Hello")
+          return render(request, 'partials/data-row_teacher.html',context)
+    
 
 def search(request):
     import time

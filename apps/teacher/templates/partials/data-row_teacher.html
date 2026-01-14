@@ -1,0 +1,19 @@
+ <tr>
+          <td>{{teacher.id}}</td>
+          <td>{{teacher.fname}}</td>
+          <td>{{teacher.lname}}</td>
+          <td>{{teacher.created_at|date:"d M, Y"}}</td>
+          <td>
+            <a href=""
+              ><i
+                class="edit-icon bi bi-pencil-square"
+                hx-get="{%url 'update' teacher.id%}"
+                hx-trigger="click"
+                hx-target="#teachme"
+                hx-swap="outerhtml"
+              ></i
+            ></a>
+          </td>
+        </tr>
+
+       

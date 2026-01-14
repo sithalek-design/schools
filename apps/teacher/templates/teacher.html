@@ -1,36 +1,23 @@
 {%extends 'main.html'%}
 
-{%block title%} Teacher {%endblock%} 
+ {%block title%} Teacher {%endblock%} 
 
- {%block contentheader%}
-Teacher
-{%endblock%}
+ {%block contentheader%} Teacher {%endblock%} 
 
- {%block breadcrumb%}
-Teacher
-{%endblock%}
+ {%block breadcrumb%} Teacher {%endblock%}
+
 {%block search_textbox%}
-<input class="form-control" type="text" 
-placeholder="Search" 
-name="search"
-hx-get="{%url 'search'%}"
-hx-trigger="keyup"
-hx-target="#tblteacher"
-hx-indicator="#spinner"
-/>
+ {%include 'partials/search-textbox_teacher.html'%}
+{%endblock%} 
 
-{%endblock%}
-{%block content%}
+{%block content%} 
+{%include 'partials/spinner_teacher.html'%}
 
-{%include 'partials/spinner.html'%}
 <div class="row">
   <div class="row">
-    {%include 'partials/save-form_teacher.html'%}
-   {%include 'partials/detail-list_teacher.html'%}
-   
+    {%include 'partials/save-form_teacher.html'%} 
+    {%include 'partials/detail-list_teacher.html'%}
   </div>
 </div>
 
-
-<div id="sala"></div>
 {%endblock%}
