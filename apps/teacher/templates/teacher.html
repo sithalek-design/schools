@@ -9,9 +9,8 @@ Teacher
  {%block breadcrumb%}
 Teacher
 {%endblock%}
-
-{%block content%}
-<input type="text" 
+{%block search_textbox%}
+<input class="form-control" type="text" 
 placeholder="Search" 
 name="search"
 hx-get="{%url 'search'%}"
@@ -19,6 +18,10 @@ hx-trigger="keyup"
 hx-target="#tblteacher"
 hx-indicator="#spinner"
 />
+
+{%endblock%}
+{%block content%}
+
 {%include 'partials/spinner.html'%}
 <div class="row">
   <div class="row">

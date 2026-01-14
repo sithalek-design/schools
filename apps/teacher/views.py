@@ -25,7 +25,7 @@ def search(request):
     teach=Teacher.objects.filter(
         Q(lname__icontains=query)|Q(fname__icontains=query)
     )
-    return render(request,'partials/list-detail.html',{'teachers':teach})
+    return render(request,'partials/detail-list_teacher.html',{'teachers':teach})
 
 def update_form(request,pk):
     tea=Teacher.objects.get(id=pk)
