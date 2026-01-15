@@ -9,6 +9,7 @@ def teacher(request):
     tea=Teacher.objects.all().order_by('-created_at')
     context={'teachers':tea,
              'tForm':tform,
+             'button':'Save',
              }
     return render(request,'teacher.html',context)
 
@@ -40,10 +41,11 @@ def update_form(request,pk):
    
     context={
         'tForm':form,
+        'button':'Update',
     }
     # context={'teachers':tea}
    
-    return render(request,'partials/update-form_teacher.html',context)
+    return render(request,'partials/save-form_teacher.html',context)
     
 def create_update(request,pk):
     tea=Teacher.objects.get(id=pk)
