@@ -6,7 +6,7 @@ from .form import *
 
 def teacher(request):
     tform=TeacherForm()
-    tea=Teacher.objects.all().order_by()
+    tea=Teacher.objects.all().order_by('-created_at')
     context={'teachers':tea,
              'tForm':tform,
              }
@@ -17,18 +17,17 @@ def create(request):
           form = TeacherForm(request.POST)
           if form.is_valid():
            
-           form.save()
-           context={
-               'teachers':teacher,
-           }
+           teacher = form.save()
+        #    teacher= Teacher.objects.last()
+           
         #    print(teachers)
         # return render(request,'m.html')
-          return render(request, 'partials/data-row_teacher.html',context)
+          return render(request, 'partials/data_row-teacher.html',{'teacher':teacher})
     
 
 def search(request):
-    import time
-    time.sleep(2)
+    # import time
+    # time.sleep(2)
     query=request.GET.get('search','')
     teach=Teacher.objects.filter(
         Q(lname__icontains=query)|Q(fname__icontains=query)

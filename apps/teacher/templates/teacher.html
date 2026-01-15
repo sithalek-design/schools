@@ -7,11 +7,14 @@
  {%block breadcrumb%} Teacher {%endblock%}
 
 {%block search_textbox%}
+<div class="input-group">
  {%include 'partials/search-textbox_teacher.html'%}
+ {%include 'partials/spinner_teacher.html'%}
+</div>
 {%endblock%} 
 
 {%block content%} 
-{%include 'partials/spinner_teacher.html'%}
+
 
 <div class="row">
   <div class="row">

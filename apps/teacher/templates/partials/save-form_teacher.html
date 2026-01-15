@@ -4,7 +4,8 @@
       <form id="teacher_create"
         hx-post="{%url 'create-teacher'%}"
         method="POST"
-        hx-target="#teachme"
+        hx-target="#teacher_tbl"
+        hx-swap="afterbegin"
       
       >
         {% csrf_token %}
