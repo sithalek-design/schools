@@ -38,10 +38,13 @@ def search(request):
 def update_form(request,pk):
     tea=Teacher.objects.get(id=pk)
     form=TeacherForm(instance=tea)
-   
+    
+    print(form)
+
     context={
         'tForm':form,
         'button':'Update',
+        'id':'teacher_update_sitha'
     }
     # context={'teachers':tea}
    
