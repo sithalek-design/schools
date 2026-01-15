@@ -39,17 +39,17 @@
   }
 
   .delete-icon:hover{
-    color:red;
-    font-size: 17px;
+    color:rgb(255, 12, 12);
+    
   }
   .edit-icon:hover{
-    color:rgb(0, 156, 26);
-    font-size: 17px;
+    color:rgb(0, 26, 255);
+    
   }
   .edit-icon{
-    color:rgb(0, 156, 26);
+    color:rgb(0, 148, 62);
   }
   .delete-icon{
-    color:red;
+    color:rgb(184, 0, 0);
   }
 

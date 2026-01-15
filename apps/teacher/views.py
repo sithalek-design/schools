@@ -37,7 +37,7 @@ def search(request):
 def update_form(request,pk):
     tea=Teacher.objects.get(id=pk)
     form=TeacherForm(instance=tea)
-
+   
     context={
         'tForm':form,
     }
@@ -45,5 +45,16 @@ def update_form(request,pk):
    
     return render(request,'partials/update-form_teacher.html',context)
     
+def create_update(request,pk):
+    tea=Teacher.objects.get(id=pk)
+    form=TeacherForm(instance=tea)
+    if request.method=='POST':
+        form = TeacherForm(request.POST,instance=tea)
+        if form.is_valid():
+        
+         teacher = form.save()
+    # context={
+    #     'tForm':form,
+    # }
 
-
+    return render(request, 'partials/data_row-teacher.html',{'teacher':teacher})

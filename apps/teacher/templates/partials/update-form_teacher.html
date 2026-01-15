@@ -1,36 +1,47 @@
-
 <div class="col-sm-12">
-      <table class="table table-borderless shadow">
-        <tbody id="teachme">
-          <form hx-post="{%url 'create-teacher'%}" id="hello">
-            {% csrf_token %}
-            <tr>
-              <td>
-                <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
-                {{tForm.fname}}
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="lblmp_name_en" class="form-label required"
-                  >Name in En</label
-                >
-                {{tForm.lname}}
-              </td>
-            </tr>
-            
-            <tr>
-              <td class="text-end">
-                <input type="button" value="Cancel" class="btn btn-outline-danger"
-                
-                hx-get="{%url 'teacher'%}"
-                hx-trigger="click"
-                hx-target="none"
-                />
-                <input type="submit" value=" Update " class="btn btn-outline-primary" />
-              </td>
-            </tr>
-          </form>
-        </tbody>
-      </table>
-    </div>
+  <table class="table table-borderless shadow">
+    <tbody id="teachme">
+      <form method="POST"
+      hx-post="{%url 'create-update_teacher' 84%}"
+              hx-target="#teacher_tbl"
+      
+      >
+        {% csrf_token %}
+        <tr>
+          <td>
+            <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
+            {{tForm.fname}}
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <label for="lblmp_name_en" class="form-label required"
+              >Name in En</label
+            >
+            {{tForm.lname}}
+          </td>
+        </tr>
+
+        <tr>
+          <td class="text-end">
+            <input
+              type="button"
+              value="Cancel"
+              class="btn btn-outline-danger"
+              hx-get="{%url 'teacher'%}"
+              hx-trigger="click"
+              hx-target="none"
+            />
+            <input
+              type="submit"
+              value=" Update "
+              class="btn btn-outline-primary"
+              id="hello"
+              
+            />
+          </td>
+        </tr>
+      </form>
+    </tbody>
+  </table>
+</div>
