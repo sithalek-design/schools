@@ -57,3 +57,9 @@ def update_form(request,pk):
    
     return render(request,'partials/update-form_teacher.html',context)
     
+def delete_teacher(request,pk):
+    tea=Teacher.objects.get(id=pk)
+    tea.delete()
+    teacher=Teacher.objects.all().order_by('-created_at')
+    return render(request,'partials/detail-list_teacher.html',{'teachers':teacher})
+    

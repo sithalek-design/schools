@@ -1,10 +1,10 @@
 
 <div class="col-sm-4" id="teachme">
-  <table class="table table-borderless shadow" id="tblTeacher" >
+  <table class="table table-borderless shadow " id="tblTeacher" >
     <tbody>
      
         <tr>
-          <td>
+          <td class="p-4">
              <form id="teacher_create"
         hx-post="{%url 'create-teacher'%}"
         method="POST"
@@ -13,18 +13,24 @@
       
       >
         {% csrf_token %}
+        <div>
             <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
             {{tForm.fname}}
- <label for="lblmp_name_en" class="form-label required"
+        </div>
+        <div><br>
+            <label for="lblmp_name_en" class="form-label required"
               >Name in En</label
             >
             {{tForm.lname}}
+        </div><br>
+            <div class="text-end" >
             <input
               type="submit"
               value={{button}}
               class="btn btn-outline-primary"
             />
           </form>
+        </div>
           </td>
         </tr>
        
