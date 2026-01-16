@@ -59,7 +59,25 @@ def update_form(request,pk):
     
 def delete_teacher(request,pk):
     tea=Teacher.objects.get(id=pk)
+    context={
+        'teacher':tea,
+        'id':pk,
+    }
+    return render(request,'partials/modal-content-teacher.html',{'teacher':tea})
+
+def run_delete_teacher(request,pk):
+    tea=Teacher.objects.get(id=pk)
     tea.delete()
     teacher=Teacher.objects.all().order_by('-created_at')
     return render(request,'partials/detail-list_teacher.html',{'teachers':teacher})
+
+def cancel_button_teacher(request):
+    tform=TeacherForm()
+    tea=Teacher.objects.all().order_by('-created_at')
+    context={'teachers':tea,
+             'tForm':tform,
+             'button':'Save',
+             }
+
+    return render(request,'partials/save-form_teacher.html',context)
     

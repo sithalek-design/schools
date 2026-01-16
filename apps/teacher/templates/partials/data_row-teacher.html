@@ -10,20 +10,20 @@
         hx-get="{%url 'update' teacher.id%}"
         hx-trigger="click"
         hx-target="#teachme"
-        {% comment %} hx-swap="outerHTML" {% endcomment %}
-        
         hx-swap="innerHTML"
       ></i></a
     >&ensp;&ensp;
-    <a href="javascript:void(0);"><i
-       class="delete-icon bi bi-trash"
-      
-       hx-delete="{% url 'delete_teacher' teacher.id %}"
-      hx-target="#teachme"
-      hx-swap="innerHTML"
-      hx-confirm="Are you sure you want to delete this item? This action cannot be undone."
-      class="btn btn-danger"
-      
-      ></i></a>
+    <a href="javascript:void(0);"
+      ><i
+        class="delete-icon bi bi-trash"
+        hx-get="{% url 'delete_teacher' teacher.id %}"
+        hx-target="#modal_content"
+        hx-trigger="click"
+        hx-swap="innerHTML"
+        data-bs-toggle="modal"
+        data-bs-target="#modal_teacher"
+        class="btn btn-danger"
+      ></i
+    ></a>
   </td>
 </tr>

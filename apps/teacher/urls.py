@@ -8,6 +8,7 @@ urlpatterns=[
     path('update/<int:pk>',view=views.update_form,name="update"),
     path('create',view=views.create,name="create-teacher"),
     path('delete_teacher/<int:pk>',view=views.delete_teacher,name="delete_teacher"),
+    path('cancel_button_teacher/',view=views.cancel_button_teacher,name="cancel_button_teacher"),
     
 
 ]
