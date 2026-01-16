@@ -4,16 +4,17 @@
   <td>{{teacher.lname}}</td>
   <td>{{teacher.created_at|date:"d M, Y"}}</td>
   <td class="text-center">
-    <a href=""
+    <a href="javascript:void(0);"
       ><i
         class="edit-icon bi bi-pencil-square"
         hx-get="{%url 'update' teacher.id%}"
         hx-trigger="click"
         hx-target="#teachme"
-        hx-swap="outerHTML"
-        {% comment %} hx-swap="innerHTML" {% endcomment %}
+        {% comment %} hx-swap="outerHTML" {% endcomment %}
+        
+        hx-swap="innerHTML"
       ></i></a
     >&ensp;&ensp;
-    <a href=""><i class="delete-icon bi bi-trash"></i></a>
+    <a href="javascript:void(0);"><i class="delete-icon bi bi-trash"></i></a>
   </td>
 </tr>

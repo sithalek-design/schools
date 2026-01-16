@@ -7,7 +7,7 @@ urlpatterns=[
     path('search/',view=views.search,name="search"),
     path('update/<int:pk>',view=views.update_form,name="update"),
     path('create',view=views.create,name="create-teacher"),
-    path('create-update/<int:pk>',view=views.create_update,name="create-update_teacher"),
+    
     
 
 ]

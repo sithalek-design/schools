@@ -39,27 +39,21 @@ def update_form(request,pk):
     tea=Teacher.objects.get(id=pk)
     form=TeacherForm(instance=tea)
     
-    print(form)
-
+    if request.method=='POST':
+          form = TeacherForm(request.POST,instance=tea)
+          if form.is_valid():
+           
+            form.save()
+            teacher=Teacher.objects.all().order_by('-created_at')
+            return render(request,'partials/detail-list_teacher.html',{'teachers':teacher})
+   
     context={
         'tForm':form,
         'button':'Update',
-        'id':'teacher_update_sitha'
+        'id':pk,
+        'form_id':'teacher_update_sitha',
     }
     # context={'teachers':tea}
    
-    return render(request,'partials/save-form_teacher.html',context)
+    return render(request,'partials/update-form_teacher.html',context)
     
-def create_update(request,pk):
-    tea=Teacher.objects.get(id=pk)
-    form=TeacherForm(instance=tea)
-    if request.method=='POST':
-        form = TeacherForm(request.POST,instance=tea)
-        if form.is_valid():
-        
-         teacher = form.save()
-    # context={
-    #     'tForm':form,
-    # }
-
-    return render(request, 'partials/data_row-teacher.html',{'teacher':teacher})

@@ -1,41 +1,35 @@
 <div class="col-sm-12">
   <table class="table table-borderless shadow">
-    <tbody id="teachme">
+    <tbody >
       
-      <form id={{id}}
-        hx-post="{%url 'update-teacher'%}"
+      
+        <tr>
+          <td>
+            <form id="updateTeacher"
+        hx-post="{%url 'update' id%}"
         method="POST"
-        hx-target="#teacher_tbl"
-        hx-swap="beforeend"
+        hx-target="#co8"
+        hx-swap="outerHTML"
       >
         {% csrf_token %}
-        <tr>
-          <td>
             <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
             {{tForm.fname}}
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <label for="lblmp_name_en" class="form-label required"
+
+             <label for="lblmp_name_en" class="form-label required"
               >Name in En</label
             >
             {{tForm.lname}}
-          </td>
-        </tr>
-
-        <tr>
-          <td class="text-end">
-           
             <input
               type="submit"
               value=" Update "
               class="btn btn-outline-primary"
              
             />
+            </form>
           </td>
         </tr>
-      </form>
+       
+      
     </tbody>
   </table>
 </div>
