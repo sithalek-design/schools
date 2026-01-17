@@ -1,3 +1,27 @@
-  <div class="modal-body" hx-target="this" id="modal_content">
-       Are you sure to delete "{{teacher}}" {{id}} ?
+ 
+
+  <!-- Modal Header -->
+      <div class="modal-header">
+        <h5 class="modal-title">Delete Form</h5>
+        
       </div>
+
+      <!-- Modal body -->
+       <div class="modal-body" hx-target="this" >
+       Are you sure to delete <strong>"{{teacher}}"</strong>  ?
+
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        {%if teacher.id%}
+        <button type="button" class="btn btn-outline-danger"
+        hx-get="{% url 'run_delete_teacher' teacher.id %}"
+        hx-trigger="click"
+        hx-target="#co8"
+        hx-swap="outerHTML"
+        data-bs-dismiss="modal">Delete</button>
+        {%endif%}
+        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
+      </div>
+      

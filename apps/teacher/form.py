@@ -1,5 +1,7 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, forms
 from .models import *
+
+
 
 class TeacherForm(ModelForm):
     class Meta:
@@ -11,6 +13,8 @@ class TeacherForm(ModelForm):
         super().__init__(*args,**kwargs)
         self.fields['fname'].widget.attrs.update({'class':'form-control','placeholder': 'Enter in FName','id':'txtfname_save'})
         self.fields['lname'].widget.attrs.update({'class':'form-control','placeholder': 'Enter in LName','id':'txtlname_save'})
+        
+        
         
         
       

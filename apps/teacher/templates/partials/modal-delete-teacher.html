@@ -4,27 +4,9 @@
 <!-- The Modal -->
 <div class="modal" id="modal_teacher" >
   <div class="modal-dialog ">
-    <div class="modal-content">
+    <div class="modal-content" id="modal_content">
 
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Delete Form</h4>
-        
-      </div>
-
-      <!-- Modal body -->
-      {%include 'partials/modal-content-teacher.html'%}
-
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-outline-danger"
-        
-         hx-get="{%url 'delete_teacher' 4%}"
-        hx-trigger="click"
-        hx-target="#teachme"
-        >Ok</button>
-        <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal">Close</button>
-      </div>
+    {%include 'partials/modal-content-teacher.html'%}
 
     </div>
   </div>

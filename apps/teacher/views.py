@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_list_or_404
 from django.http import HttpResponse,JsonResponse
 from .models import Teacher
 from django.db.models import Q
@@ -32,7 +32,7 @@ def search(request):
     query=request.GET.get('search','')
     teach=Teacher.objects.filter(
         Q(lname__icontains=query)|Q(fname__icontains=query)
-    )
+    ).order_by('-created_at')
     return render(request,'partials/detail-list_teacher.html',{'teachers':teach})
 
 def update_form(request,pk):
@@ -58,12 +58,13 @@ def update_form(request,pk):
     return render(request,'partials/update-form_teacher.html',context)
     
 def delete_teacher(request,pk):
-    tea=Teacher.objects.get(id=pk)
+    tea=Teacher.objects.get(pk=pk)
+    # tea=get_list_or_404(Teacher,pk=pk)
     context={
         'teacher':tea,
-        'id':pk,
+        
     }
-    return render(request,'partials/modal-content-teacher.html',{'teacher':tea})
+    return render(request,'partials/modal-content-teacher.html',context)
 
 def run_delete_teacher(request,pk):
     tea=Teacher.objects.get(id=pk)
