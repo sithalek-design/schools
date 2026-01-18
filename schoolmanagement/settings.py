@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+
     'django.contrib.staticfiles',
+    "bootstrap_datepicker_plus",
     
     'apps.student',
     'apps.teacher',
@@ -79,6 +81,7 @@ WSGI_APPLICATION = 'schoolmanagement.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+
 
 
 

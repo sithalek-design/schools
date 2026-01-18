@@ -6,6 +6,8 @@ class Teacher(models.Model):
     fname=models.CharField(max_length=200)
     lname=models.CharField(max_length=200)
     dob=models.DateField(null=True,blank=True)
+    
+
     created_at=models.DateTimeField(auto_now_add=True)
 
 

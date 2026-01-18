@@ -4,6 +4,7 @@ from .models import Teacher
 from django.db.models import Q
 from .form import *
 
+
 def teacher(request):
     tform=TeacherForm()
     tea=Teacher.objects.all().order_by('-created_at')

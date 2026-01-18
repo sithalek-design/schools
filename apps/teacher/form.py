@@ -2,6 +2,9 @@ from django.forms import ModelForm, forms
 from .models import *
 
 
+   
+
+
 
 class TeacherForm(ModelForm):
     class Meta:
@@ -11,8 +14,17 @@ class TeacherForm(ModelForm):
     
     def __init__(self,*args,**kwargs):
         super().__init__(*args,**kwargs)
-        self.fields['fname'].widget.attrs.update({'class':'form-control','placeholder': 'Enter in FName','id':'txtfname_save'})
+        self.fields['fname'].widget.attrs.update({'class':'form-control','placeholder': 'Enter in FName','id':'txtfname_save','autocomplete': 'off'})
         self.fields['lname'].widget.attrs.update({'class':'form-control','placeholder': 'Enter in LName','id':'txtlname_save'})
+        self.fields['dob'].widget.attrs.update({
+                'class': 'form-control datepicker',
+                'placeholder': 'YYYY-MM-DD',
+                'autocomplete': 'off'
+            })
+
+
+
+
         
         
         
