@@ -11,7 +11,7 @@ def teacher(request):
     tea=Teacher.objects.all().order_by('-created_at')
 
 
-    paginator=Paginator(tea,3)
+    paginator=Paginator(tea,10)
     page_number = request.GET.get('page')
     try:
         page_obj = paginator.get_page(page_number)

@@ -21,6 +21,9 @@ class TeacherForm(ModelForm):
                 'placeholder': 'YYYY-MM-DD',
                 'autocomplete': 'off'
             })
+        self.fields['teacher_image'].widget.attrs.update({
+                'class': 'form-control'
+            })
 
 
 

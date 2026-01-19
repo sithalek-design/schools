@@ -11,6 +11,7 @@
         hx-target="#teacher_tbl"
         hx-swap="afterbegin"
       
+        enctype="multipart/form-data"
       >
         {% csrf_token %}
         <div>
@@ -30,9 +31,11 @@
               >Date of Place</label
             >
             {{ tForm.dob }}
+           
 
             
         </div><br>
+         {{ tForm.teacher_image }}
             <div class="text-end" >
             <input
               type="submit"
