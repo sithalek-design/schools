@@ -478,6 +478,8 @@
       crossorigin="anonymous"
     ></script>
     
+
+
     <script>
       // NOTICE!! DO NOT USE ANY OF THIS JAVASCRIPT
       // IT'S ALL JUST JUNK FOR DEMO
@@ -651,6 +653,29 @@
       // - END PIE CHART -
       //-----------------
     </script>
+
+ 
+
+<script>
+  function initDatePicker() {
+    $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      todayHighlight: true
+    });
+  }
+
+  // Initial page load
+  document.addEventListener("DOMContentLoaded", function () {
+    initDatePicker();
+  });
+
+  // After HTMX swaps content
+  document.body.addEventListener('htmx:afterSwap', function (event) {
+    initDatePicker();
+  });
+</script>
+
     <!--end::Script-->
   </body>
   <!--end::Body-->
