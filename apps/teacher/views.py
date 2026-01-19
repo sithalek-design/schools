@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.shortcuts import render,get_list_or_404
 from django.http import HttpResponse,JsonResponse
 from .models import Teacher
@@ -8,9 +9,23 @@ from .form import *
 def teacher(request):
     tform=TeacherForm()
     tea=Teacher.objects.all().order_by('-created_at')
-    context={'teachers':tea,
+
+
+    paginator=Paginator(tea,3)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+    # If page is not an integer, deliver first page.
+        page_obj = paginator.get_page(1)
+    except EmptyPage:
+    # If page is out of range, deliver last page of results.
+        page_obj = paginator.get_page(paginator.num_pages)
+
+    context={
              'tForm':tform,
              'button':'Save',
+             'teachers':page_obj,
              }
     return render(request,'teacher.html',context)
 
