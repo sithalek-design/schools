@@ -31,7 +31,7 @@ def teacher(request):
 
 def create(request):
     if request.method=='POST':
-          form = TeacherForm(request.POST)
+          form = TeacherForm(request.POST,request.FILES)
           if form.is_valid():
            
            teacher = form.save()

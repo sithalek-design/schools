@@ -25,5 +25,5 @@ urlpatterns = [
     path('',include('apps.teacher.urls')),
     path('',include('apps.program.urls')),
 ]
-if settings.DEBUG:
- urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
