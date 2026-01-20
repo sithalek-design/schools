@@ -125,8 +125,19 @@ def run_delete_teacher(request,pk):
     teacher_row_delete.delete()
     teacher_list=Teacher.objects.all().order_by('-created_at')
 
+    paginator=Paginator(teacher_list,10)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+    # If page is not an integer, deliver first page.
+        page_obj = paginator.get_page(1)
+    except EmptyPage:
+    # If page is out of range, deliver last page of results.
+        page_obj = paginator.get_page(paginator.num_pages)
+
     context={
-            'teachers':teacher_list
+            'teachers':page_obj
              }
 
     return render(request,'partials/detail-list_teacher.html',context)
