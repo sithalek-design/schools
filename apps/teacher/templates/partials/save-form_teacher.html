@@ -16,13 +16,13 @@
         {% csrf_token %}
         <div>
             <label for="lblmp_name_kh" class="form-label">Name in Kh</label>
-            {{tForm.fname}}
+            {{teacher_form.fname}}
         </div>
         <div><br>
             <label for="lblmp_name_en" class="form-label required"
               >Name in En</label
             >
-            {{tForm.lname}}
+            {{teacher_form.lname}}
 
             
         </div><br>
@@ -30,12 +30,12 @@
             <label for="lblmp_name_en" class="form-label required"
               >Date of Place</label
             >
-            {{ tForm.dob }}
+            {{ teacher_form.dob }}
            
 
             
         </div><br>
-         {{ tForm.teacher_image }}
+         {{ teacher_form.teacher_image }}
             <div class="text-end" >
             <input
               type="submit"

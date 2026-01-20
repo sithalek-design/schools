@@ -7,11 +7,11 @@ from .form import *
 
 
 def teacher(request):
-    tform=TeacherForm()
-    tea=Teacher.objects.all().order_by('-created_at')
+    teacher_form=TeacherForm()
+    teacher_list=Teacher.objects.all().order_by('-created_at')
 
 
-    paginator=Paginator(tea,10)
+    paginator=Paginator(teacher_list,10)
     page_number = request.GET.get('page')
     try:
         page_obj = paginator.get_page(page_number)
@@ -23,7 +23,7 @@ def teacher(request):
         page_obj = paginator.get_page(paginator.num_pages)
 
     context={
-             'tForm':tform,
+             'teacher_form':teacher_form,
              'button':'Save',
              'teachers':page_obj,
              }
@@ -35,36 +35,74 @@ def create(request):
           if form.is_valid():
            
            teacher = form.save()
+           context= {
+                'teacher':teacher
+                     }
         #    teacher= Teacher.objects.last()
            
         #    print(teachers)
         # return render(request,'m.html')
-          return render(request, 'partials/data_row-teacher.html',{'teacher':teacher})
+            
+          return render(request, 'partials/data_row-teacher.html',context)
     
 
 def search(request):
     # import time
     # time.sleep(2)
     query=request.GET.get('search','')
-    teach=Teacher.objects.filter(
+    teacher_list=Teacher.objects.filter(
         Q(lname__icontains=query)|Q(fname__icontains=query)
     ).order_by('-created_at')
-    return render(request,'partials/detail-list_teacher.html',{'teachers':teach})
+
+    paginator=Paginator(teacher_list,10)
+    page_number = request.GET.get('page')
+    try:
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+    # If page is not an integer, deliver first page.
+        page_obj = paginator.get_page(1)
+    except EmptyPage:
+    # If page is out of range, deliver last page of results.
+        page_obj = paginator.get_page(paginator.num_pages)
+
+
+    context={
+        'teachers':page_obj
+    }
+
+    return render(request,'partials/detail-list_teacher.html',context)
 
 def update_form(request,pk):
-    tea=Teacher.objects.get(id=pk)
-    form=TeacherForm(instance=tea)
+    teacher_row_update=Teacher.objects.get(id=pk)
+    teacher_form_update=TeacherForm(instance=teacher_row_update)
     
     if request.method=='POST':
-          form = TeacherForm(request.POST,instance=tea)
-          if form.is_valid():
+          teacher_form_update = TeacherForm(request.POST,instance=teacher_row_update)
+          if teacher_form_update.is_valid():
            
-            form.save()
-            teacher=Teacher.objects.all().order_by('-created_at')
-            return render(request,'partials/detail-list_teacher.html',{'teachers':teacher})
+            teacher_form_update.save()
+            teacher_list_update=Teacher.objects.all().order_by('-created_at')
+
+            paginator=Paginator(teacher_list_update,10)
+            page_number = request.GET.get('page')
+            try:
+                page_obj = paginator.get_page(page_number)
+            except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+                page_obj = paginator.get_page(1)
+            except EmptyPage:
+            # If page is out of range, deliver last page of results.
+                page_obj = paginator.get_page(paginator.num_pages)
+
+
+            context={
+                    'teachers':page_obj
+                     }
+
+            return render(request,'partials/detail-list_teacher.html',context)
    
     context={
-        'tForm':form,
+        'teacher_form':teacher_form_update,
         'button':'Update',
         'id':pk,
         'form_id':'teacher_update_sitha',
@@ -74,25 +112,30 @@ def update_form(request,pk):
     return render(request,'partials/update-form_teacher.html',context)
     
 def delete_teacher(request,pk):
-    tea=Teacher.objects.get(pk=pk)
+    teacher_row_delete=Teacher.objects.get(pk=pk)
     # tea=get_list_or_404(Teacher,pk=pk)
     context={
-        'teacher':tea,
+        'teacher':teacher_row_delete,
         
     }
     return render(request,'partials/modal-content-teacher.html',context)
 
 def run_delete_teacher(request,pk):
-    tea=Teacher.objects.get(id=pk)
-    tea.delete()
-    teacher=Teacher.objects.all().order_by('-created_at')
-    return render(request,'partials/detail-list_teacher.html',{'teachers':teacher})
+    teacher_row_delete=Teacher.objects.get(id=pk)
+    teacher_row_delete.delete()
+    teacher_list=Teacher.objects.all().order_by('-created_at')
+
+    context={
+            'teachers':teacher_list
+             }
+
+    return render(request,'partials/detail-list_teacher.html',context)
 
 def cancel_button_teacher(request):
-    tform=TeacherForm()
+    teacher_form_cancel=TeacherForm()
     tea=Teacher.objects.all().order_by('-created_at')
     context={'teachers':tea,
-             'tForm':tform,
+             'teacher_form':teacher_form_cancel,
              'button':'Save',
              }
 
