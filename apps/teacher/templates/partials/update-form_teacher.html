@@ -9,6 +9,7 @@
             method="POST"
             hx-target="#co8"
             hx-swap="outerHTML"
+            enctype="multipart/form-data"
           >
             {% csrf_token %}
       
@@ -27,8 +28,10 @@
               >Date of Birth</label
             >
            {{ teacher_form.dob }}
+          </div>
+          <div><br>
+            {{ teacher_form.teacher_image }}
           </div><br>
-          
           <div class="text-end" >
             <input type="button" class="btn btn-outline-danger" value="Cancel {{teachers}}"
             hx-get="{%url 'cancel_button_teacher'%}"

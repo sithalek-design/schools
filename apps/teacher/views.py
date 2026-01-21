@@ -75,11 +75,12 @@ def search(request):
 def update_form(request,pk):
     teacher_row_update=Teacher.objects.get(id=pk)
     teacher_form_update=TeacherForm(instance=teacher_row_update)
+    old_image=Teacher.teacher_image
     
     if request.method=='POST':
-          teacher_form_update = TeacherForm(request.POST,instance=teacher_row_update)
+          teacher_form_update = TeacherForm(request.POST,request.FILES,instance=teacher_row_update)
           if teacher_form_update.is_valid():
-           
+            
             teacher_form_update.save()
             teacher_list_update=Teacher.objects.all().order_by('-created_at')
 
