@@ -4,14 +4,16 @@ from django.http import HttpResponse,JsonResponse
 from .models import Teacher
 from django.db.models import Q
 from .form import *
+import csv
+from openpyxl import Workbook
 
-
+row_number=10
 def teacher(request):
     teacher_form=TeacherForm()
     teacher_list=Teacher.objects.all().order_by('-created_at')
 
 
-    paginator=Paginator(teacher_list,10)
+    paginator=Paginator(teacher_list,row_number)
     page_number = request.GET.get('page')
     try:
         page_obj = paginator.get_page(page_number)
@@ -54,7 +56,7 @@ def search(request):
         Q(lname__icontains=query)|Q(fname__icontains=query)
     ).order_by('-created_at')
 
-    paginator=Paginator(teacher_list,10)
+    paginator=Paginator(teacher_list,row_number)
     page_number = request.GET.get('page')
     try:
         page_obj = paginator.get_page(page_number)
@@ -84,7 +86,7 @@ def update_form(request,pk):
             teacher_form_update.save()
             teacher_list_update=Teacher.objects.all().order_by('-created_at')
 
-            paginator=Paginator(teacher_list_update,10)
+            paginator=Paginator(teacher_list_update,row_number)
             page_number = request.GET.get('page')
             try:
                 page_obj = paginator.get_page(page_number)
@@ -126,7 +128,7 @@ def run_delete_teacher(request,pk):
     teacher_row_delete.delete()
     teacher_list=Teacher.objects.all().order_by('-created_at')
 
-    paginator=Paginator(teacher_list,10)
+    paginator=Paginator(teacher_list,row_number)
     page_number = request.GET.get('page')
     try:
         page_obj = paginator.get_page(page_number)
@@ -153,3 +155,46 @@ def cancel_button_teacher(request):
 
     return render(request,'partials/save-form_teacher.html',context)
     
+
+def export_teachers_csv(request):
+    response = HttpResponse(
+        content_type='text/csv'
+    )
+    response['Content-Disposition'] = 'attachment; filename="teachers.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name', 'Created At'])
+
+    teachers = Teacher.objects.all()
+
+    for t in teachers:
+        writer.writerow([
+            t.id,
+            t.fname,
+            t.lname,
+            t.created_at.strftime('%Y-%m-%d')
+        ])
+
+    return response
+
+
+
+def export_selected_teachers_excel(request):
+    ids = request.GET.getlist('ids')
+
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "Teachers"
+
+    # Header
+    ws.append(['ID', 'First Name', 'Last Name'])
+
+    teachers = Teacher.objects.filter(id__in=ids)
+
+    for t in teachers:
+        ws.append([t.id, t.fname, t.lname])
+
+    response = HttpResponse(
+        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    )
+    response['Content-Disposition'] = 'attachment; filename=selected_teachers.xlsx'

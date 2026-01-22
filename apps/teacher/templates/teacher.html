@@ -2,12 +2,24 @@
 
  {%block title%} Teacher {%endblock%} 
 
- {%block contentheader%} Teacher {%endblock%} 
+ {%block contentheader%} 
+ Teacher
+ <a href="{% url 'export_teachers_csv' %}"
+ 
+ 
+ >To CSV </a>&nbsp;
+ <a href="{% url 'export_teachers_csv' %}"
+ 
+ 
+ >To Excel </a>
+ 
+ 
+ {%endblock%} 
 
  {%block breadcrumb%} Teacher {%endblock%}
 
 {%block search_textbox%}
-<div class="input-group">
+<div class="input-group" id="search_form-teacher">
  {%include 'partials/search-textbox_teacher.html'%}
  {%include 'partials/spinner_teacher.html'%}
 </div>
