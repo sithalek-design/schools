@@ -1,0 +1,19 @@
+<script>
+  function initDatePicker() {
+    $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd',
+      autoclose: true,
+      todayHighlight: true
+    });
+  }
+
+  // Initial page load
+  document.addEventListener("DOMContentLoaded", function () {
+    initDatePicker();
+  });
+
+  // After HTMX swaps content
+  document.body.addEventListener('htmx:afterSwap', function (event) {
+    initDatePicker();
+  });
+</script>

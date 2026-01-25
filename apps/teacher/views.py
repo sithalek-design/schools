@@ -177,24 +177,40 @@ def export_teachers_csv(request):
 
     return response
 
+def export_selected_teachers_csv(request):
+    ids = request.GET.getlist('ids')
+    # teachers = Teacher.objects.filter(id__in=ids)
+    # print(ids)
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="selected_teachers.csv"'
 
+    writer = csv.writer(response)
+    writer.writerow(['ID', 'First Name', 'Last Name'])
+
+    teachers = Teacher.objects.filter(id__in=ids)
+    
+    for t in teachers:
+      writer.writerow([t.id, t.fname, t.lname])
+      print(writer)
+    print(response)
+    return response
 
 def export_selected_teachers_excel(request):
     ids = request.GET.getlist('ids')
+    
+    # wb = Workbook()
+    # ws = wb.active
+    # ws.title = "Teachers"
 
-    wb = Workbook()
-    ws = wb.active
-    ws.title = "Teachers"
+    # # Header
+    # ws.append(['ID', 'First Name', 'Last Name'])
 
-    # Header
-    ws.append(['ID', 'First Name', 'Last Name'])
+    # teachers = Teacher.objects.filter(id__in=ids)
 
-    teachers = Teacher.objects.filter(id__in=ids)
+    # for t in teachers:
+    #     ws.append([t.id, t.fname, t.lname])
 
-    for t in teachers:
-        ws.append([t.id, t.fname, t.lname])
-
-    response = HttpResponse(
-        content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    )
-    response['Content-Disposition'] = 'attachment; filename=selected_teachers.xlsx'
+    # response = HttpResponse(
+    #     content_type='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    # )
+    # response['Content-Disposition'] = 'attachment; filename=selected_teachers.xlsx'

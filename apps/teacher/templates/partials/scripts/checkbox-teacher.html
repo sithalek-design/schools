@@ -1,0 +1,22 @@
+<script>
+
+  function exportSelectedTeachers(e) {
+      e.preventDefault();
+
+      const checked = document.querySelectorAll(
+          '#exportForm input[name="ids"]:checked'
+      );
+
+      if (checked.length === 0) {
+          alert("Please select at least one teacher");
+          return;
+      }
+
+          const params = new URLSearchParams();
+          checked.forEach(cb => params.append('ids', cb.value));
+
+          // trigger real browser download
+          window.location.href =
+              "{% url 'export_selected_teachers_csv' %}?" + params.toString();
+      }
+</script>

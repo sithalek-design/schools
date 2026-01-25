@@ -11,6 +11,7 @@ urlpatterns=[
     path('run_delete_teacher/<int:pk>',view=views.run_delete_teacher,name="run_delete_teacher"),
     path('cancel_button_teacher/',view=views.cancel_button_teacher,name="cancel_button_teacher"),
     path('export/teachers/csv/', views.export_teachers_csv, name='export_teachers_csv'),
+    path('export/teachers/selected/',views.export_selected_teachers_csv,name='export_selected_teachers_csv'),
     path('export/teachers/selected/excel/',views.export_selected_teachers_excel, name='export_selected_teachers_excel'),
     
 

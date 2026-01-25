@@ -656,25 +656,13 @@
 
  
 
-<script>
-  function initDatePicker() {
-    $('.datepicker').datepicker({
-      format: 'yyyy-mm-dd',
-      autoclose: true,
-      todayHighlight: true
-    });
-  }
+{%block script%}
 
-  // Initial page load
-  document.addEventListener("DOMContentLoaded", function () {
-    initDatePicker();
-  });
+  {%endblock%}
 
-  // After HTMX swaps content
-  document.body.addEventListener('htmx:afterSwap', function (event) {
-    initDatePicker();
-  });
-</script>
+
+
+
 
     <!--end::Script-->
   </body>

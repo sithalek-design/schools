@@ -37,8 +37,18 @@
           </div>
             
         </div><br>
+        
          
             <div class="text-end" >
+              <a href="{% url 'export_selected_teachers_csv' %}"
+ class="btn btn-outline-success"
+   {% comment %} onclick="exportSelectedTeachers(event)" {% endcomment %}
+   onclick="exportCSV(event)"
+   
+   >
+   
+ 
+ Export to csv </a>
             <input
               type="submit"
               value={{button}}
