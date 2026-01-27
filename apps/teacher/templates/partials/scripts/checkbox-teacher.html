@@ -1,22 +1,84 @@
 <script>
-
   function exportSelectedTeachers(e) {
-      e.preventDefault();
+    e.preventDefault();
 
-      const checked = document.querySelectorAll(
-          '#exportForm input[name="ids"]:checked'
-      );
+    const checked = document.querySelectorAll(
+      '#exportForm input[name="ids"]:checked',
+    );
 
-      if (checked.length === 0) {
-          alert("Please select at least one teacher");
-          return;
+    if (checked.length === 0) {
+      alert("Please select at least one teacher");
+      return;
+    }
+
+    const params = new URLSearchParams();
+    checked.forEach((cb) => params.append("ids", cb.value));
+
+    // trigger real browser download
+    window.location.href =
+      "{% url 'export_selected_teachers_csv' %}?" + params.toString();
+  }
+</script>
+
+<script>
+  /* Select / Unselect all */
+  document.getElementById("selectAll")?.addEventListener("change", function () {
+    let ids = getSavedIds();
+
+    document.querySelectorAll(".row-checkbox").forEach((cb) => {
+      cb.checked = this.checked;
+
+      if (this.checked && !ids.includes(cb.value)) {
+        ids.push(cb.value);
       }
 
-          const params = new URLSearchParams();
-          checked.forEach(cb => params.append('ids', cb.value));
-
-          // trigger real browser download
-          window.location.href =
-              "{% url 'export_selected_teachers_csv' %}?" + params.toString();
+      if (!this.checked) {
+        ids = ids.filter((id) => id !== cb.value);
       }
+    });
+
+    saveIds(ids);
+  });
+
+  /* Collect selected IDs */
+  function getSelectedIds() {
+    return Array.from(
+      document.querySelectorAll('#exportForm input[name="ids"]:checked'),
+    ).map((cb) => cb.value);
+  }
+
+  /* Export CSV */
+  function exportCSV(e) {
+    e.preventDefault();
+
+    const ids = getSavedIds();
+
+    if (!ids.length) {
+      alert("Please select at least one teacher");
+      return;
+    }
+
+    const params = new URLSearchParams();
+    ids.forEach((id) => params.append("ids", id));
+
+    window.location.href =
+      "{% url 'export_selected_teachers_csv' %}?" + params.toString();
+  }
+
+  /* Export Excel */
+  function exportExcel(e) {
+    e.preventDefault();
+    const ids = getSelectedIds();
+
+    if (!ids.length) {
+      alert("Please select at least one teacher");
+      return;
+    }
+
+    const params = new URLSearchParams();
+    ids.forEach((id) => params.append("ids", id));
+
+    window.location.href =
+      "{% url 'export_selected_teachers_excel' %}?" + params.toString();
+  }
 </script>

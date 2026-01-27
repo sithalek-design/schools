@@ -1,182 +1,29 @@
 {%extends 'main.html'%}
-
- {%block title%} Teacher {%endblock%} 
-
- {%block contentheader%} 
- Teacher
-
- 
- {%endblock%} 
-
- {%block breadcrumb%} Teacher {%endblock%}
-
+ {%block title%} Teacher {%endblock%}
+  {%block contentheader%} Teacher {%endblock%}
+   {%block breadcrumb%} Teacher {%endblock%}
 {%block search_textbox%}
 <div class="input-group" id="search_form-teacher">
- {%include 'partials/search-textbox_teacher.html'%}
- {%include 'partials/spinner_teacher.html'%}
+  {%include 'partials/search-textbox_teacher.html'%}
+  {%include 'partials/spinner_teacher.html'%}
 </div>
-{%endblock%} 
-
-{%block content%} 
-
-
-<div class="row">
-  <div class="row" id="myRow">
-    {%include 'partials/save-form_teacher.html'%} 
-    {%include 'partials/detail-list_teacher.html'%}
-  </div>
-</div>
-{%include 'partials/modal-delete-teacher.html'%}
-
 {%endblock%}
 
 
-{%block script%}
-{% comment %} {%include 'partials/scripts/datepicker-teacher.html'%}
-{%include 'partials/scripts/checkbox-teacher.html'%}
-{%include 'partials/scripts/multi_page_checkbox-teacher.html'%}  {% endcomment %}
+{%block content%}
 
+<div class="row">
+  <div class="row" id="myRow">
+    {%include 'partials/save-form_teacher.html'%}
+    
+    {%include 'partials/detail-list_teacher.html'%}
+  </div>
+</div>
+{%include 'partials/modal-delete-teacher.html'%} {%endblock%} {%block script%}
+{%include 'partials/scripts/datepicker-teacher.html'%} 
 
-
-
-<script>
-    const STORAGE_KEY = "selected_teachers";
-
-    /* Get saved IDs */
-    function getSavedIds() {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    }
-
-    /* Save IDs */
-    function saveIds(ids) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
-    }
-
-    /* When checkbox is clicked */
-    document.addEventListener("change", function (e) {
-        if (!e.target.classList.contains("row-checkbox")) return;
-
-        let ids = getSavedIds();
-        const id = e.target.value;
-
-        if (e.target.checked) {
-            if (!ids.includes(id)) ids.push(id);
-        } else {
-            ids = ids.filter(x => x !== id);
-        }
-
-        saveIds(ids);
-    });
-
-    /* Restore checked state when page loads */
-    document.addEventListener("DOMContentLoaded", function () {
-        const ids = getSavedIds();
-        document.querySelectorAll(".row-checkbox").forEach(cb => {
-            cb.checked = ids.includes(cb.value);
-        });
-    });
-</script>
-
-
-
-<script>
-function exportSelectedTeachers(e) {
-    e.preventDefault();
-
-    const checked = document.querySelectorAll(
-        '#exportForm input[name="ids"]:checked'
-    );
-
-    if (checked.length === 0) {
-        alert("Please select at least one teacher");
-        return;
-    }
-
-    const params = new URLSearchParams();
-    checked.forEach(cb => params.append('ids', cb.value));
-
-    // trigger real browser download
-    window.location.href =
-        "{% url 'export_selected_teachers_csv' %}?" + params.toString();
-}
-</script>
-
-
-<script>
-/* Select / Unselect all */
-document.getElementById("selectAll")?.addEventListener("change", function () {
-    let ids = getSavedIds();
-
-    document.querySelectorAll('.row-checkbox').forEach(cb => {
-        cb.checked = this.checked;
-
-        if (this.checked && !ids.includes(cb.value)) {
-            ids.push(cb.value);
-        }
-
-        if (!this.checked) {
-            ids = ids.filter(id => id !== cb.value);
-        }
-    });
-
-    saveIds(ids);
-});
-
-
-/* Collect selected IDs */
-function getSelectedIds() {
-    return Array.from(
-        document.querySelectorAll('#exportForm input[name="ids"]:checked')
-    ).map(cb => cb.value);
-}
-
-/* Export CSV */
-function exportCSV(e) {
-    e.preventDefault();
-
-    const ids = getSavedIds();
-
-    if (!ids.length) {
-        alert("Please select at least one teacher");
-        return;
-    }
-
-    const params = new URLSearchParams();
-    ids.forEach(id => params.append("ids", id));
-
-    window.location.href =
-        "{% url 'export_selected_teachers_csv' %}?" + params.toString();
-}
-
-
-/* Export Excel */
-function exportExcel(e) {
-    e.preventDefault();
-    const ids = getSelectedIds();
-
-    if (!ids.length) {
-        alert("Please select at least one teacher");
-        return;
-    }
-
-    const params = new URLSearchParams();
-    ids.forEach(id => params.append('ids', id));
-
-    window.location.href =
-        "{% url 'export_selected_teachers_excel' %}?" + params.toString();
-}
-</script>
-
-
-
-
-
-
-
-
-
-
-
+{%include 'partials/scripts/checkbox-teacher.html'%} 
+{%include 'partials/scripts/multi_page_checkbox-teacher.html'%} 
 
 
 

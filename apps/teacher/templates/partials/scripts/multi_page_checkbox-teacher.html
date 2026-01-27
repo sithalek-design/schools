@@ -1,37 +1,37 @@
 <script>
-    const STORAGE_KEY = "selected_teachers";
+  const STORAGE_KEY = "selected_teachers";
 
   /* Get saved IDs */
-    function getSavedIds() {
-        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-    }
+  function getSavedIds() {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  }
 
   /* Save IDs */
-    function saveIds(ids) {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
-    }
+  function saveIds(ids) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
+  }
 
   /* When checkbox is clicked */
-    document.addEventListener("change", function (e) {
-        if (!e.target.classList.contains("row-checkbox")) return;
+  document.addEventListener("change", function (e) {
+    if (!e.target.classList.contains("row-checkbox")) return;
 
-        let ids = getSavedIds();
-        const id = e.target.value;
+    let ids = getSavedIds();
+    const id = e.target.value;
 
-        if (e.target.checked) {
-            if (!ids.includes(id)) ids.push(id);
-        } else {
-            ids = ids.filter(x => x !== id);
-        }
+    if (e.target.checked) {
+      if (!ids.includes(id)) ids.push(id);
+    } else {
+      ids = ids.filter((x) => x !== id);
+    }
 
-        saveIds(ids);
+    saveIds(ids);
+  });
+
+  /* Restore checked state when page loads */
+  document.addEventListener("DOMContentLoaded", function () {
+    const ids = getSavedIds();
+    document.querySelectorAll(".row-checkbox").forEach((cb) => {
+      cb.checked = ids.includes(cb.value);
     });
-
-    /* Restore checked state when page loads */
-    document.addEventListener("DOMContentLoaded", function () {
-        const ids = getSavedIds();
-        document.querySelectorAll(".row-checkbox").forEach(cb => {
-            cb.checked = ids.includes(cb.value);
-        });
-    });
+  });
 </script>
