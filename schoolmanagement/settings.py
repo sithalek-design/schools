@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-cb_710b9#fst1(pkdh)-47q+((@a2%lsi%mby8($+)tmx)p-4^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['schools-production-bt.up.railway.app','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['schools-production-bt.up.railway.app','localhost','127.0.0.1','192.168.2.31']
 CSRF_TRUSTED_ORIGINS = ['https://schools-production-bt.up.railway.app']
 
 
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'apps.student',
     'apps.teacher',
     'apps.program',
+    'apps.user',
     'widget_tweaks',
 ]
 
