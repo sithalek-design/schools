@@ -1,14 +1,13 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import UserChangeForm
-from django.contrib.auth.forms import UserCreationForm
+from .form import MyUserCreationForm
 
 def registration(request):
-    form_user=UserCreationForm()
+    form_user=MyUserCreationForm()
     if request.method=='POST':
-        form_user=UserCreationForm(request.POST) 
-        if form_user.valid():
+        form_user=MyUserCreationForm(request.POST) 
+        if form_user.is_valid():
             form_user.save()
-    
+      
 
     context={
 

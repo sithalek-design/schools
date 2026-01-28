@@ -8,7 +8,7 @@
 <body>
     <form action="" method="POST">
        {% csrf_token %}
-        {{form_user}}
+        {{form_user.username}}
         <input type="submit" value="Save">
     </form>
 </body>
