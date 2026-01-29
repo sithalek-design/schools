@@ -6,8 +6,10 @@ from django.db.models import Q
 from .form import *
 import csv
 from openpyxl import Workbook
+from django.contrib.auth.decorators import login_required
 
 row_number=10
+
 def teacher(request):
     teacher_form=TeacherForm()
     teacher_list=Teacher.objects.all().order_by('-created_at')
