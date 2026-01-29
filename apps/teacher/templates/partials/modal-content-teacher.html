@@ -18,7 +18,7 @@
         <button type="button" class="btn btn-outline-danger"
         hx-get="{% url 'run_delete_teacher' teacher.id %}"
         hx-trigger="click"
-        hx-target="#co8"
+        hx-target="#teacher_list_detail"
         hx-swap="outerHTML"
         data-bs-dismiss="modal">Delete</button>
         {%endif%}

@@ -9,6 +9,9 @@
     <form action="" method="POST">
        {% csrf_token %}
         {{form_user.username}}
+        {{form_user.email}}
+        {{form_user.password1}}
+        {{form_user.password2}}
         <input type="submit" value="Save">
     </form>
 </body>
