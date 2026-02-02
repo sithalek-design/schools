@@ -12,6 +12,9 @@
                             <input   type="submit" class="btn btn-primary btn-block" value="Signin">
                         </div>
                         <div class="form-group">
+                            {% for message in messages%}
+                            <p>{{message}}</p>
+                           {% endfor %}
                             <div class="text-center">New Member? <a href="#!">Sign up Now</a></div>
                         </div>
                     </form>
