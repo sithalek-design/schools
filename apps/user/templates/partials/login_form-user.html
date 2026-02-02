@@ -1,9 +1,18 @@
-<form action="{%url 'login'%}" method="POST">
-
-{% csrf_token %}
-<input type="text" name="username">
-<input type="password" name="password">
-
-<input  type="submit" value="Signin">
-
-</form>
+<form class="login-form" action="{%url 'login'%}" method="POST">
+    {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Email or UserName" name="username">
+                        </div>
+                        <div class="form-group">
+                            <input type="Password" class="form-control" placeholder="Password" name="password">
+                            <a href="#!" class="forgot-password">Forgot Password?</a>
+                        </div>
+                        <div class="form-group">
+                            
+                            <input   type="submit" class="btn btn-primary btn-block" value="Signin">
+                        </div>
+                        <div class="form-group">
+                            <div class="text-center">New Member? <a href="#!">Sign up Now</a></div>
+                        </div>
+                    </form>
+                     
