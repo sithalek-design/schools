@@ -17,7 +17,7 @@ def registration(request):
 
     return render(request,'registration-user.html',context)
 
-@login_required(login_url='login')
+
 def login_form(request):
     print("Login Rorm")
     context={
@@ -27,12 +27,15 @@ def login_form(request):
     return render(request,'login-user.html',context)
 
 def login_user(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method=='POST':
         myusername=request.POST.get('username')
         mypassword=request.POST.get('password')
         user_login=authenticate(request,username=myusername,password=mypassword)
         if user_login is not None:
-            return redirect('user')
+            print(myusername+mypassword)
+            return redirect('student')
         else:
             print("Not you")
             return redirect('login_form')
