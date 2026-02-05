@@ -26,6 +26,8 @@ urlpatterns = [
     path('',include('apps.teacher.urls')),
     path('',include('apps.program.urls')),
     path('',include('apps.user.urls')),
+
+    path("api/teacher/", include("apps.teacher.api.urls")),
 ]
 
 # urlpatterns+= static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
