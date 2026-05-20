@@ -53,7 +53,9 @@ INSTALLED_APPS = [
     'apps.teacher',
     'apps.program',
     'apps.user',
+    'apps.building',
     'widget_tweaks',
+
 ]
 
 MIDDLEWARE = [
